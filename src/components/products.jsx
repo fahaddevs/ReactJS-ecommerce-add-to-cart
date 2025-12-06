@@ -1,5 +1,5 @@
 
-export default function Products({ products, onAddCart  }) {
+export default function Products({ products, onAddCart, onRemoveCart  }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -24,11 +24,21 @@ export default function Products({ products, onAddCart  }) {
                 </div>
                 <p className="text-sm font-medium text-gray-900">{product.price}</p>
               </div>
-              <button 
-                type="button" 
-                className="flex items-center content-center bg-black text-white font-semibold rounded-lg cursor-pointer py-2 px-10 mt-2"
-                onClick={() => onAddCart(product)}
-                >Add Cart</button>
+              {
+                product.value == 0 ? (
+                  <button 
+                    type="button" 
+                    className="flex items-center content-center bg-black text-white font-semibold rounded-lg cursor-pointer py-2 px-10 mt-2"
+                    onClick={() => onAddCart(product)}
+                    >Add Cart</button>
+                ) : (
+                  <button 
+                    type="button" 
+                    className="flex items-center content-center bg-red-600 text-white font-semibold rounded-lg cursor-pointer py-2 px-10 mt-2"
+                    onClick={() => onRemoveCart(product)}
+                    >Remove</button>
+                )
+              }
             </div>
           ))}
         </div>

@@ -59,11 +59,25 @@ class App extends Component {
     this.setState({ products: updatedProducts });
   }
 
+  handleRemoveCart = (product) => {
+    const updatedProducts = this.state.products.map((p) => {
+      if (p.id === product.id) {
+        return { ...p, value: 0 };
+      }
+      return p;
+    });
+    this.setState({ products: updatedProducts });
+  }
+
   render() { 
     return (
       <>
         <Nav totalAddCart={this.state.products.filter(p => p.value > 0).length} />
-        <Products products={this.state.products} onAddCart={this.handleAddCart} />
+        <Products 
+          products={this.state.products} 
+          onAddCart={this.handleAddCart}
+          onRemoveCart={this.handleRemoveCart}
+        />
       </>
     );
   }
