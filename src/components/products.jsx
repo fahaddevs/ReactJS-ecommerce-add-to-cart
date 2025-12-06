@@ -1,5 +1,5 @@
 
-export default function Products({ products }) {
+export default function Products({ products, onAddCart  }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -17,7 +17,6 @@ export default function Products({ products }) {
                 <div className="text-left">
                   <h3 className="text-sm text-gray-700">
                     <a href={product.href} className="font-semibold text-[16px]">
-                      <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                     </a>
                   </h3>
@@ -25,7 +24,11 @@ export default function Products({ products }) {
                 </div>
                 <p className="text-sm font-medium text-gray-900">{product.price}</p>
               </div>
-              <button type="button" className="flex items-center content-center bg-black text-white font-semibold rounded-lg cursor-pointer py-2 px-10 mt-2">Add Cart</button>
+              <button 
+                type="button" 
+                className="flex items-center content-center bg-black text-white font-semibold rounded-lg cursor-pointer py-2 px-10 mt-2"
+                onClick={() => onAddCart(product)}
+                >Add Cart</button>
             </div>
           ))}
         </div>
